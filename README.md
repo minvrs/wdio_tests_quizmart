@@ -1,3 +1,3 @@
-# wdio_tests_quizmart with TypeScript
+# wdio quizmart tests with TypeScript
 
 npm run wdio
