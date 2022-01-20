@@ -3,6 +3,7 @@ import * as loginPage from '../pageObjects/login_page';
 import { expect } from "chai"
 
 const expectedHeaderTaxt = 'Sign in'
+const expectedIncorrectEmailOrPassMsg = 'The email address or password is incorrect'
 
 
 describe('Login with email', () => {
@@ -15,10 +16,19 @@ describe('Login with email', () => {
         await browser.pause(2000);
         expect(await loginPage.getSingInHeaderText()).equals(expectedHeaderTaxt)
         await browser.pause(2000);
+        
 
+    })
 
-    });
+    it('Inccorect email or password message', async () => {
+        await loginPage.clickEnterEmail()
+        await loginPage.enterEmail()
+        await loginPage.clickEnterPass()
+        await loginPage.enterPass()
+        await loginPage.clickSignInBtn()
+        expect(await loginPage.getIncorrectEmailOrPassMsg()).equals(expectedIncorrectEmailOrPassMsg)
+
+    })
+
+    
 });
-
-
-// await LoginPage.login('mindaugas.verseckas+quiz@telesoftas.com', 'Secret123');
