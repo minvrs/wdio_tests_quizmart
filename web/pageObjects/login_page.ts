@@ -5,7 +5,10 @@ const signInHeader = '//main//h1'
 const btnSignIn = '//main//button[@type="submit"]'
 const enterEmailField = '//main//input[@name="email"]'
 const enterPassField = '//main//input[@name="password"]'
+
 const incorrectEmailOrPassMsg = '//main//div//form//h3'
+const enterEmailMsg = '//main//div//form//div//div[1]//h3'
+const enterPassMsg = '//main/div/form/div/div[2]/h3'
 
 const correctEmail = 'mindaugas.verseckas+quiz@telesoftas.com'
 const correctPass = 'Secret123'
@@ -50,5 +53,15 @@ export async function clickSignInBtn(): Promise<void> {
 
 export async function getIncorrectEmailOrPassMsg(): Promise<string> {
     return await defaultPage.getElementsTextByLocator(incorrectEmailOrPassMsg)
+    
+}
+
+export async function getEmailRequiredMsg(): Promise<string> {
+    return await defaultPage.getElementsTextByLocator(enterEmailMsg)
+    
+}
+
+export async function getPassRequiredMsg(): Promise<string> {
+    return await defaultPage.getElementsTextByLocator(enterPassMsg)
     
 }
