@@ -15,6 +15,7 @@ const correctPass = 'Secret123'
 const incorectEmail = 'indaugas.verseckas+quiz@telesoftas.com'
 const incorectPass = 'ecret123'
 const invalidEmail = 'qwerty'
+const shortPass = '1234'
 
 
 export async function clickSingInWithEmailBtn(): Promise<void> {
@@ -57,12 +58,11 @@ export async function getIncorrectEmailOrPassMsg(): Promise<string> {
     
 }
 
-export async function getEmailRequiredMsg(): Promise<string> {
+export async function getInvalidEmailMsg(): Promise<string>{
     return await defaultPage.getElementsTextByLocator(emailValidationMsg)
-    
 }
 
-export async function getPassRequiredMsg(): Promise<string> {
+export async function getInvalidPassdMsg(): Promise<string> {
     return await defaultPage.getElementsTextByLocator(passValidationMsg)
     
 }
@@ -72,6 +72,7 @@ export async function enterInvalidEmail(): Promise<void> {
     
 }
 
-export async function getInvalidEmailMsg(): Promise<string>{
-    return await defaultPage.getElementsTextByLocator(emailValidationMsg)
+export async function enterShortPass(): Promise<void> {
+    await defaultPage.enterTextByLocator(enterPassField, shortPass)
+    
 }

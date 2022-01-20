@@ -6,6 +6,7 @@ const expectedHeaderTaxt = 'Sign in'
 const expectedIncorrectEmailOrPassMsg = 'The email address or password is incorrect'
 const expectedEmailOrPassRequireMsg = 'Required'
 const expectedInvalidEmailMsg = 'Must be valid email'
+const expectedShortPassMsg = 'Password must be at least of 6 characters in length'
 
 
 describe('Login with email', () => {
@@ -14,9 +15,9 @@ describe('Login with email', () => {
         browser.maximizeWindow();
         await defaultPage.openURL();
         await browser.pause(1000);
-        await loginPage.clickSingInWithEmailBtn()
+        await loginPage.clickSingInWithEmailBtn();
         await browser.pause(2000);
-        expect(await loginPage.getSingInHeaderText()).equals(expectedHeaderTaxt)
+        expect(await loginPage.getSingInHeaderText()).equals(expectedHeaderTaxt);
         await browser.pause(1000);
 
 
@@ -35,8 +36,8 @@ describe('Login with email', () => {
     it('Email and Password required message', async () => {
         browser.refresh();
         await loginPage.clickSignInBtn();
-        expect(await loginPage.getEmailRequiredMsg()).equals(expectedEmailOrPassRequireMsg);
-        expect(await loginPage.getPassRequiredMsg()).equals(expectedEmailOrPassRequireMsg);
+        expect(await loginPage.getInvalidEmailMsg()).equals(expectedEmailOrPassRequireMsg);
+        expect(await loginPage.getInvalidPassdMsg()).equals(expectedEmailOrPassRequireMsg);
 
     });
 
@@ -45,7 +46,17 @@ describe('Login with email', () => {
         await loginPage.clickEnterEmail();
         await loginPage.enterInvalidEmail();
         await loginPage.clickSignInBtn();
-        expect(await loginPage.getInvalidEmailMsg()).equals(expectedInvalidEmailMsg)
+        expect(await loginPage.getInvalidEmailMsg()).equals(expectedInvalidEmailMsg);
+
+    });
+
+    it('Short Password message', async () => {
+        browser.refresh();
+        await loginPage.clickEnterPass();
+        await loginPage.enterShortPass();
+        await loginPage.clickSignInBtn();
+        expect(await loginPage.getInvalidPassdMsg()).equals(expectedShortPassMsg)
+
 
     });
 
