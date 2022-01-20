@@ -7,13 +7,14 @@ const enterEmailField = '//main//input[@name="email"]'
 const enterPassField = '//main//input[@name="password"]'
 
 const incorrectEmailOrPassMsg = '//main//div//form//h3'
-const enterEmailMsg = '//main//div//form//div//div[1]//h3'
-const enterPassMsg = '//main/div/form/div/div[2]/h3'
+const emailValidationMsg = '//main//div//form//div//div[1]//h3'
+const passValidationMsg = '//main/div/form/div/div[2]/h3'
 
 const correctEmail = 'mindaugas.verseckas+quiz@telesoftas.com'
 const correctPass = 'Secret123'
 const incorectEmail = 'indaugas.verseckas+quiz@telesoftas.com'
 const incorectPass = 'ecret123'
+const invalidEmail = 'qwerty'
 
 
 export async function clickSingInWithEmailBtn(): Promise<void> {
@@ -57,11 +58,20 @@ export async function getIncorrectEmailOrPassMsg(): Promise<string> {
 }
 
 export async function getEmailRequiredMsg(): Promise<string> {
-    return await defaultPage.getElementsTextByLocator(enterEmailMsg)
+    return await defaultPage.getElementsTextByLocator(emailValidationMsg)
     
 }
 
 export async function getPassRequiredMsg(): Promise<string> {
-    return await defaultPage.getElementsTextByLocator(enterPassMsg)
+    return await defaultPage.getElementsTextByLocator(passValidationMsg)
     
+}
+
+export async function enterInvalidEmail(): Promise<void> {
+    await defaultPage.enterTextByLocator(enterEmailField, invalidEmail)
+    
+}
+
+export async function getInvalidEmailMsg(): Promise<string>{
+    return await defaultPage.getElementsTextByLocator(emailValidationMsg)
 }

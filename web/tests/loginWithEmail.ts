@@ -5,6 +5,7 @@ import { expect } from "chai"
 const expectedHeaderTaxt = 'Sign in'
 const expectedIncorrectEmailOrPassMsg = 'The email address or password is incorrect'
 const expectedEmailOrPassRequireMsg = 'Required'
+const expectedInvalidEmailMsg = 'Must be valid email'
 
 
 describe('Login with email', () => {
@@ -31,13 +32,22 @@ describe('Login with email', () => {
 
     });
 
-    it('Email and Password required', async () => {
+    it('Email and Password required message', async () => {
         browser.refresh();
         await loginPage.clickSignInBtn();
         expect(await loginPage.getEmailRequiredMsg()).equals(expectedEmailOrPassRequireMsg);
         expect(await loginPage.getPassRequiredMsg()).equals(expectedEmailOrPassRequireMsg);
 
-    })
+    });
+
+    it('Invalid Email message', async () => {
+        browser.refresh();
+        await loginPage.clickEnterEmail();
+        await loginPage.enterInvalidEmail();
+        await loginPage.clickSignInBtn();
+        expect(await loginPage.getInvalidEmailMsg()).equals(expectedInvalidEmailMsg)
+
+    });
 
 
 });
