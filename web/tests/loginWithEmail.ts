@@ -1,19 +1,24 @@
-// import LoginPage from  '../pageObjects/login.page.ts';
-// import SecurePage from '../../web/pageObjects/secure.page';
+import * as defaultPage from "../pageObjects/default_page"
+import * as loginPage from '../pageObjects/login_page';
+import { expect } from "chai"
 
-import * as LoginPage from "../pageObjects/login.page"
+const expectedHeaderTaxt = 'Sign in'
+
 
 describe('Login with email', () => {
-    it('should login with valid credentials', async () => {
-        await LoginPage.openURL();
-        await browser.pause(500)
-        
 
-        // await LoginPage.login('tomsmith', 'SuperSecretPassword!');
-        // await expect(SecurePage.flashAlert).toBeExisting();
-        // await expect(SecurePage.flashAlert).toHaveTextContaining(
-        //     'You logged into a secure area!');
+    it('Open Sign In with Email page', async () => {
+        browser.maximizeWindow();
+        await defaultPage.openURL();
+        await browser.pause(1000);
+        await loginPage.clickSingInWithEmailBtn()
+        await browser.pause(2000);
+        expect(await loginPage.getSingInHeaderText()).equals(expectedHeaderTaxt)
+        await browser.pause(2000);
+
+
     });
 });
 
 
+// await LoginPage.login('mindaugas.verseckas+quiz@telesoftas.com', 'Secret123');
