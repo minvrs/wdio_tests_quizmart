@@ -12,7 +12,6 @@ const expectedShortPassMsg = 'Password must be at least of 6 characters in lengt
 describe('Login with email', () => {
 
     it('Open Sign In with Email page', async () => {
-        browser.maximizeWindow();
         await defaultPage.openURL();
         await browser.pause(1000);
         await loginPage.clickSingInWithEmailBtn();

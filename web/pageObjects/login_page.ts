@@ -30,49 +30,49 @@ export async function getSingInHeaderText(): Promise<string> {
 
 export async function clickEnterEmail(): Promise<void> {
     await defaultPage.clickByLocator(enterEmailField)
-    
+
 }
 
 export async function enterEmail(): Promise<void> {
     await defaultPage.enterTextByLocator(enterEmailField, correctEmail)
-    
+
 }
 
 export async function clickEnterPass(): Promise<void> {
     await defaultPage.clickByLocator(enterPassField)
-    
+
 }
 
 export async function enterPass(): Promise<void> {
     await defaultPage.enterTextByLocator(enterPassField, incorectPass)
-    
+
 }
 
 export async function clickSignInBtn(): Promise<void> {
     await defaultPage.clickByLocator(btnSignIn)
-    
+
 }
 
 export async function getIncorrectEmailOrPassMsg(): Promise<string> {
     return await defaultPage.getElementsTextByLocator(incorrectEmailOrPassMsg)
-    
+
 }
 
-export async function getInvalidEmailMsg(): Promise<string>{
+export async function getInvalidEmailMsg(): Promise<string> {
     return await defaultPage.getElementsTextByLocator(emailValidationMsg)
 }
 
 export async function getInvalidPassdMsg(): Promise<string> {
     return await defaultPage.getElementsTextByLocator(passValidationMsg)
-    
+
 }
 
 export async function enterInvalidEmail(): Promise<void> {
     await defaultPage.enterTextByLocator(enterEmailField, invalidEmail)
-    
+
 }
 
 export async function enterShortPass(): Promise<void> {
     await defaultPage.enterTextByLocator(enterPassField, shortPass)
-    
+
 }
