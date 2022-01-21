@@ -1,5 +1,5 @@
 import * as defaultPage from "../pageObjects/default_page"
-import * as loginPage from '../pageObjects/login_page';
+import * as loginPage from '../pageObjects/login_page'
 import { expect } from "chai"
 
 const expectedHeaderTaxt = 'Sign in'
@@ -12,52 +12,52 @@ const expectedShortPassMsg = 'Password must be at least of 6 characters in lengt
 describe('Login with email', () => {
 
     it('Open Sign In with Email page', async () => {
-        await defaultPage.openURL();
-        await browser.pause(1000);
-        await loginPage.clickSingInWithEmailBtn();
-        await browser.pause(2000);
-        expect(await loginPage.getSingInHeaderText()).equals(expectedHeaderTaxt);
-        await browser.pause(1000);
+        await defaultPage.openURL()
+        await browser.pause(1000)
+        await loginPage.clickSingInWithEmailBtn()
+        await browser.pause(2000)
+        expect(await loginPage.getSingInHeaderText()).equals(expectedHeaderTaxt)
+        await browser.pause(1000)
 
 
-    });
+    })
 
     it('Inccorect email or password message', async () => {
-        await loginPage.clickEnterEmail();
-        await loginPage.enterEmail();
-        await loginPage.clickEnterPass();
-        await loginPage.enterPass();
-        await loginPage.clickSignInBtn();
-        expect(await loginPage.getIncorrectEmailOrPassMsg()).equals(expectedIncorrectEmailOrPassMsg);
+        await loginPage.clickEnterEmail()
+        await loginPage.enterEmail()
+        await loginPage.clickEnterPass()
+        await loginPage.enterPass()
+        await loginPage.clickSignInBtn()
+        expect(await loginPage.getIncorrectEmailOrPassMsg()).equals(expectedIncorrectEmailOrPassMsg)
 
-    });
+    })
 
     it('Email and Password required message', async () => {
-        browser.refresh();
-        await loginPage.clickSignInBtn();
-        expect(await loginPage.getInvalidEmailMsg()).equals(expectedEmailOrPassRequireMsg);
-        expect(await loginPage.getInvalidPassdMsg()).equals(expectedEmailOrPassRequireMsg);
+        browser.refresh()
+        await loginPage.clickSignInBtn()
+        expect(await loginPage.getInvalidEmailMsg()).equals(expectedEmailOrPassRequireMsg)
+        expect(await loginPage.getInvalidPassdMsg()).equals(expectedEmailOrPassRequireMsg)
 
-    });
+    })
 
     it('Invalid Email message', async () => {
-        browser.refresh();
-        await loginPage.clickEnterEmail();
-        await loginPage.enterInvalidEmail();
-        await loginPage.clickSignInBtn();
-        expect(await loginPage.getInvalidEmailMsg()).equals(expectedInvalidEmailMsg);
+        browser.refresh()
+        await loginPage.clickEnterEmail()
+        await loginPage.enterInvalidEmail()
+        await loginPage.clickSignInBtn()
+        expect(await loginPage.getInvalidEmailMsg()).equals(expectedInvalidEmailMsg)
 
-    });
+    })
 
     it('Short Password message', async () => {
-        browser.refresh();
-        await loginPage.clickEnterPass();
-        await loginPage.enterShortPass();
-        await loginPage.clickSignInBtn();
+        browser.refresh()
+        await loginPage.clickEnterPass()
+        await loginPage.enterShortPass()
+        await loginPage.clickSignInBtn()
         expect(await loginPage.getInvalidPassdMsg()).equals(expectedShortPassMsg)
 
 
-    });
+    })
 
 
-});
+})
