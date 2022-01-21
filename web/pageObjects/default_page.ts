@@ -23,4 +23,3 @@ export async function enterTextByLocator(locator: string, text: string): Promise
     await (await getElementsByLocator(locator)).keys(text)
 
 }
-

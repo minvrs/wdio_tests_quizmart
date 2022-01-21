@@ -6,7 +6,7 @@ const btnSignIn = '//main//button[@type="submit"]'
 const enterEmailField = '//main//input[@name="email"]'
 const enterPassField = '//main//input[@name="password"]'
 
-const incorrectEmailOrPassMsg = '//main//div//form//h3'
+const incorrectEmailOrPassMsg = '//main//form//h3'
 const emailValidationMsg = '//main//div//form//div//div[1]//h3'
 const passValidationMsg = '//main/div/form/div/div[2]/h3'
 

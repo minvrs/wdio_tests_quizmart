@@ -17,8 +17,6 @@ describe('Login with email', () => {
         await loginPage.clickSingInWithEmailBtn()
         await browser.pause(2000)
         expect(await loginPage.getSingInHeaderText()).equals(expectedHeaderTaxt)
-        await browser.pause(1000)
-
 
     })
 
@@ -56,8 +54,6 @@ describe('Login with email', () => {
         await loginPage.clickSignInBtn()
         expect(await loginPage.getInvalidPassdMsg()).equals(expectedShortPassMsg)
 
-
     })
-
 
 })
