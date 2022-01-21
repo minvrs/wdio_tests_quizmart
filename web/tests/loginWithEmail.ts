@@ -2,7 +2,7 @@ import * as defaultPage from "../pageObjects/default_page"
 import * as loginPage from '../pageObjects/login_page'
 import { expect } from "chai"
 
-const expectedHeaderTaxt = 'Sign in'
+const expectedHeaderText = 'Sign in'
 const expectedIncorrectEmailOrPassMsg = 'The email address or password is incorrect'
 const expectedEmailOrPassRequireMsg = 'Required'
 const expectedInvalidEmailMsg = 'Must be valid email'
@@ -16,7 +16,7 @@ describe('Login with email', () => {
         await browser.pause(1000)
         await loginPage.clickSingInWithEmailBtn()
         await browser.pause(2000)
-        expect(await loginPage.getSingInHeaderText()).equals(expectedHeaderTaxt)
+        expect(await loginPage.getSingInHeaderText()).equals(expectedHeaderText)
 
     })
 
