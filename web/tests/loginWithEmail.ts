@@ -3,7 +3,7 @@ import * as defaultPage from "../pageObjects/default_page"
 import * as loginPage from '../pageObjects/login_page'
 import { expect } from "chai"
 
-const expectedHeaderText = 'Sign in'
+
 const expectedIncorrectEmailOrPassMsg = 'The email address or password is incorrect'
 const expectedEmailOrPassRequireMsg = 'Required'
 const expectedInvalidEmailMsg = 'Must be valid email'
@@ -11,15 +11,6 @@ const expectedShortPassMsg = 'Password must be at least of 6 characters in lengt
 
 
 describe('Login with email', () => {
-
-    it('Open Sign In with Email page', async () => {
-        await defaultPage.openURL()
-        await browser.pause(1000)
-        await landingPage.clickSingInWithEmailBtn()
-        await browser.pause(2000)
-        expect(await loginPage.getSingInHeaderText()).equals(expectedHeaderText)
-
-    })
 
     it('Inccorect email or password message', async () => {
         await loginPage.enterEmail()
