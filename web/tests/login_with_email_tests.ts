@@ -10,7 +10,12 @@ const expectedInvalidEmailMsg = 'Must be valid email'
 const expectedShortPassMsg = 'Password must be at least of 6 characters in length'
 
 
-describe('Login with email', () => {
+describe('Login with email tests', () => {
+
+    before(async function () {
+        await defaultPage.openSigInPageURL()
+
+    })
 
     it('Inccorect email or password message', async () => {
         await loginPage.enterEmail()
