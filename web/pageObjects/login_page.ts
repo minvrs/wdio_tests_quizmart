@@ -1,6 +1,5 @@
 import * as defaultPage from "../pageObjects/default_page"
 
-const btnSignInWithEmail = '//main//button[text()="Sign in with email"]'
 const signInHeader = '//main//h1'
 const btnSignIn = '//main//button[@type="submit"]'
 const enterEmailField = '//main//input[@name="email"]'
@@ -17,11 +16,6 @@ const incorectPass = 'ecret123'
 const invalidEmail = 'qwerty'
 const shortPass = '1234'
 
-
-export async function clickSingInWithEmailBtn(): Promise<void> {
-    await defaultPage.clickByLocator(btnSignInWithEmail)
-
-}
 
 export async function getSingInHeaderText(): Promise<string> {
     return await defaultPage.getElementsTextByLocator(signInHeader)

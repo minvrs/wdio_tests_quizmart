@@ -1,3 +1,4 @@
+import * as landingPage from "../pageObjects/landing_page"
 import * as defaultPage from "../pageObjects/default_page"
 import * as loginPage from '../pageObjects/login_page'
 import { expect } from "chai"
@@ -14,7 +15,7 @@ describe('Login with email', () => {
     it('Open Sign In with Email page', async () => {
         await defaultPage.openURL()
         await browser.pause(1000)
-        await loginPage.clickSingInWithEmailBtn()
+        await landingPage.clickSingInWithEmailBtn()
         await browser.pause(2000)
         expect(await loginPage.getSingInHeaderText()).equals(expectedHeaderText)
 
