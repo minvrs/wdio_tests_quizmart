@@ -21,9 +21,7 @@ describe('Login with email', () => {
     })
 
     it('Inccorect email or password message', async () => {
-        await loginPage.clickEnterEmail()
         await loginPage.enterEmail()
-        await loginPage.clickEnterPass()
         await loginPage.enterPass()
         await loginPage.clickSignInBtn()
         expect(await loginPage.getIncorrectEmailOrPassMsg()).equals(expectedIncorrectEmailOrPassMsg)
@@ -40,7 +38,6 @@ describe('Login with email', () => {
 
     it('Invalid Email message', async () => {
         browser.refresh()
-        await loginPage.clickEnterEmail()
         await loginPage.enterInvalidEmail()
         await loginPage.clickSignInBtn()
         expect(await loginPage.getInvalidEmailMsg()).equals(expectedInvalidEmailMsg)
@@ -49,7 +46,6 @@ describe('Login with email', () => {
 
     it('Short Password message', async () => {
         browser.refresh()
-        await loginPage.clickEnterPass()
         await loginPage.enterShortPass()
         await loginPage.clickSignInBtn()
         expect(await loginPage.getInvalidPassdMsg()).equals(expectedShortPassMsg)

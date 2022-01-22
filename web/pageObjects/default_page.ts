@@ -20,6 +20,7 @@ export async function getElementsTextByLocator(locator: string): Promise<string>
 }
 
 export async function enterTextByLocator(locator: string, text: string): Promise<void> {
+    await clickByLocator(locator)
     await (await getElementsByLocator(locator)).keys(text)
 
 }
