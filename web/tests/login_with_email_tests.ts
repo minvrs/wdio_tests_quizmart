@@ -7,6 +7,8 @@ import { validationFieldMessages } from '../utils/validation_field_messages'
 const incorectPass = 'ecret123'
 const invalidEmail = 'qwerty'
 const shortPass = '1234'
+const longPass = Math.random().toString(16).repeat(10)
+const longEmail = Math.random().toString(16).repeat(18) + '@a.a'
 
 
 describe('Login with email tests', () => {
@@ -16,7 +18,7 @@ describe('Login with email tests', () => {
 
     })
 
-    it('Inccorect email or password message', async () => {
+    it('Inccorect email or password validation message', async () => {
         await loginPage.signInWithEmail(userCredentials.user.email, incorectPass)
         browser.pause(2000)
         await loginPage.clickSignInBtn()
@@ -32,17 +34,31 @@ describe('Login with email tests', () => {
 
     })
 
-    it('Invalid Email message', async () => {
+    it('Invalid Email validation message', async () => {
         browser.refresh()
         await loginPage.enterEmailAndClickPassField(invalidEmail)
         expect(await loginPage.getInvalidEmailMsg()).equals(validationFieldMessages.invalidEmailMsg)
 
     })
 
-    it('Short Password message', async () => {
+    it('Short Password validation message', async () => {
         browser.refresh()
         await loginPage.enterPassAndClickEmailField(shortPass)
         expect(await loginPage.getInvalidPassdMsg()).equals(validationFieldMessages.shortPassMsg)
+
+    })
+
+    it('Long Email validation message', async () => {
+        browser.refresh()
+        await loginPage.enterEmailAndClickPassField(longEmail)
+        expect(await loginPage.getInvalidEmailMsg()).equals(validationFieldMessages.longEmailMsg)
+
+    })
+
+    it('Long Password validation message', async () => {
+        browser.refresh()
+        await loginPage.enterPassAndClickEmailField(longPass)
+        expect(await loginPage.getInvalidPassdMsg()).equals(validationFieldMessages.longPassMsg)
 
     })
 
