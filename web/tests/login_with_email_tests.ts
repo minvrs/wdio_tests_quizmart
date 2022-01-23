@@ -18,6 +18,11 @@ describe('Login with email tests', () => {
 
     })
 
+    beforeEach(async function () {
+        await browser.refresh()
+
+    })
+
     it('Inccorect email or password validation message', async () => {
         await loginPage.signInWithEmail(userCredentials.user.email, incorectPass)
         browser.pause(2000)
@@ -27,7 +32,6 @@ describe('Login with email tests', () => {
     })
 
     it('Email and Password required message', async () => {
-        browser.refresh()
         await loginPage.clickSignInBtn()
         expect(await loginPage.getInvalidEmailMsg()).equals(validationFieldMessages.RequireMsg)
         expect(await loginPage.getInvalidPassdMsg()).equals(validationFieldMessages.RequireMsg)
@@ -35,28 +39,24 @@ describe('Login with email tests', () => {
     })
 
     it('Invalid Email validation message', async () => {
-        browser.refresh()
         await loginPage.enterEmailAndClickPassField(invalidEmail)
         expect(await loginPage.getInvalidEmailMsg()).equals(validationFieldMessages.invalidEmailMsg)
 
     })
 
     it('Short Password validation message', async () => {
-        browser.refresh()
         await loginPage.enterPassAndClickEmailField(shortPass)
         expect(await loginPage.getInvalidPassdMsg()).equals(validationFieldMessages.shortPassMsg)
 
     })
 
     it('Long Email validation message', async () => {
-        browser.refresh()
         await loginPage.enterEmailAndClickPassField(longEmail)
         expect(await loginPage.getInvalidEmailMsg()).equals(validationFieldMessages.longEmailMsg)
 
     })
 
     it('Long Password validation message', async () => {
-        browser.refresh()
         await loginPage.enterPassAndClickEmailField(longPass)
         expect(await loginPage.getInvalidPassdMsg()).equals(validationFieldMessages.longPassMsg)
 
