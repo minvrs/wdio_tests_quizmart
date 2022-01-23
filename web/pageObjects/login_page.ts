@@ -49,7 +49,7 @@ export async function clickForgotPassLinl(): Promise<void> {
 
 //----------Gets----------//
 
-export async function getSingInHeaderText(): Promise<string> {
+export async function getPageHeaderText(): Promise<string> {
     return await defaultPage.getElementsTextByLocator(pageHeaders)
 
 }

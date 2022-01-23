@@ -12,7 +12,7 @@ describe('Landing page test cases', () => {
         await browser.pause(1000)
         await landingPage.clickSingInWithEmailBtn()
         await browser.pause(2000)
-        expect(await loginPage.getSingInHeaderText()).equals(expectedHeaderText)
+        expect(await loginPage.getPageHeaderText()).equals(expectedHeaderText)
 
     })
 })

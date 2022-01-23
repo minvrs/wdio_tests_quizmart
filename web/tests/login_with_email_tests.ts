@@ -10,6 +10,9 @@ const invalidEmails = ['invalidEmail.com', 'invalid@email', '@invalidEmail.com',
 const shortPass = '1234'
 const longPass = Math.random().toString(16).repeat(10)
 const longEmail = Math.random().toString(16).repeat(18) + '@a.a'
+//--Maybe need to move to other place--//
+const registerPageHeader = 'Register'
+const forgotPassHeader = 'Reset your password'
 
 
 describe('Login with email tests', () => {
@@ -23,6 +26,8 @@ describe('Login with email tests', () => {
         await browser.refresh()
 
     })
+
+    //--Need test for succesful login--//
 
     it('Inccorect Email validation message', async () => {
         await loginPage.signInWithEmail(notRegisteredEmail, userCredentials.user.password)
@@ -48,15 +53,15 @@ describe('Login with email tests', () => {
         }
     })
 
-    it('Short Password validation message', async () => {
-        await loginPage.enterPassAndClickEmailField(shortPass)
-        expect(await loginPage.getInvalidPassdMsg()).equals(validationFieldMessages.shortPassMsg)
-
-    })
-
     it('Long Email validation message', async () => {
         await loginPage.enterEmailAndClickPassField(longEmail)
         expect(await loginPage.getInvalidEmailMsg()).equals(validationFieldMessages.longEmailMsg)
+
+    })
+
+    it('Short Password validation message', async () => {
+        await loginPage.enterPassAndClickEmailField(shortPass)
+        expect(await loginPage.getInvalidPassdMsg()).equals(validationFieldMessages.shortPassMsg)
 
     })
 
@@ -70,6 +75,19 @@ describe('Login with email tests', () => {
         await loginPage.clickSignInBtn()
         expect(await loginPage.getInvalidEmailMsg()).equals(validationFieldMessages.RequireMsg)
         expect(await loginPage.getInvalidPassdMsg()).equals(validationFieldMessages.RequireMsg)
+
+    })
+
+    it('Open Create Account link', async () => {
+        await loginPage.clickCreateAccountLink()
+        expect(await loginPage.getPageHeaderText()).equals(registerPageHeader)
+        await browser.back()
+
+    })
+
+    it('Open Forgot Password link', async () => {
+        await loginPage.clickForgotPassLinl()
+        expect(await loginPage.getPageHeaderText()).equals(forgotPassHeader)
 
     })
 
