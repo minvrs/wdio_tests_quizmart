@@ -1,6 +1,6 @@
 import * as defaultPage from "../pageObjects/default_page"
 
-const signInHeader = '//main//h1'
+const pageHeaders = '//main//h1'
 const enterEmailField = '//main//input[@name="email"]'
 const enterPassField = '//main//input[@name="password"]'
 const btnSignIn = '//main//button[@type="submit"]'
@@ -50,7 +50,7 @@ export async function clickForgotPassLinl(): Promise<void> {
 //----------Gets----------//
 
 export async function getSingInHeaderText(): Promise<string> {
-    return await defaultPage.getElementsTextByLocator(signInHeader)
+    return await defaultPage.getElementsTextByLocator(pageHeaders)
 
 }
 
