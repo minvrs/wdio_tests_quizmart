@@ -1,50 +1,34 @@
 import * as defaultPage from "../pageObjects/default_page"
 
-const btnSignInWithEmail = '//main//button[text()="Sign in with email"]'
-const signInHeader = '//main//h1'
-const btnSignIn = '//main//button[@type="submit"]'
+const pageHeaders = '//main//h1'
 const enterEmailField = '//main//input[@name="email"]'
 const enterPassField = '//main//input[@name="password"]'
-
+const btnSignIn = '//main//button[@type="submit"]'
+const linkCreateAccount = '//main//a[@href="/sign-up"]'
+const linkForgotPass = '//main//form/a[@href="/reset-password"]'
 const incorrectEmailOrPassMsg = '//main//form//h3'
 const emailValidationMsg = '//main//div//form//div//div[1]//h3'
 const passValidationMsg = '//main/div/form/div/div[2]/h3'
 
-const correctEmail = 'mindaugas.verseckas+quiz@telesoftas.com'
-const correctPass = 'Secret123'
-const incorectEmail = 'indaugas.verseckas+quiz@telesoftas.com'
-const incorectPass = 'ecret123'
-const invalidEmail = 'qwerty'
-const shortPass = '1234'
 
+//----------Actions----------//
 
-export async function clickSingInWithEmailBtn(): Promise<void> {
-    await defaultPage.clickByLocator(btnSignInWithEmail)
+export async function signInWithEmail(email: string, pass: string) {
+    await defaultPage.enterTextByLocator(enterEmailField, email)
+    await defaultPage.enterTextByLocator(enterPassField, pass)
+    await defaultPage.clickByLocator(btnSignIn)
 
 }
 
-export async function getSingInHeaderText(): Promise<string> {
-    return await defaultPage.getElementsTextByLocator(signInHeader)
-
-}
-
-export async function clickEnterEmail(): Promise<void> {
-    await defaultPage.clickByLocator(enterEmailField)
-
-}
-
-export async function enterEmail(): Promise<void> {
-    await defaultPage.enterTextByLocator(enterEmailField, correctEmail)
-
-}
-
-export async function clickEnterPass(): Promise<void> {
+export async function enterEmailAndClickPassField(email: string): Promise<void> {
+    await defaultPage.enterTextByLocator(enterEmailField, email)
     await defaultPage.clickByLocator(enterPassField)
 
 }
 
-export async function enterPass(): Promise<void> {
-    await defaultPage.enterTextByLocator(enterPassField, incorectPass)
+export async function enterPassAndClickEmailField(pass: string): Promise<void> {
+    await defaultPage.enterTextByLocator(enterPassField, pass)
+    await defaultPage.clickByLocator(enterEmailField)
 
 }
 
@@ -53,8 +37,20 @@ export async function clickSignInBtn(): Promise<void> {
 
 }
 
-export async function getIncorrectEmailOrPassMsg(): Promise<string> {
-    return await defaultPage.getElementsTextByLocator(incorrectEmailOrPassMsg)
+export async function clickCreateAccountLink(): Promise<void> {
+    await defaultPage.clickByLocator(linkCreateAccount)
+
+}
+
+export async function clickForgotPassLink(): Promise<void> {
+    await defaultPage.clickByLocator(linkForgotPass)
+
+}
+
+//----------Gets----------//
+
+export async function getPageHeaderText(): Promise<string> {
+    return await defaultPage.getElementsTextByLocator(pageHeaders)
 
 }
 
@@ -67,12 +63,7 @@ export async function getInvalidPassdMsg(): Promise<string> {
 
 }
 
-export async function enterInvalidEmail(): Promise<void> {
-    await defaultPage.enterTextByLocator(enterEmailField, invalidEmail)
-
-}
-
-export async function enterShortPass(): Promise<void> {
-    await defaultPage.enterTextByLocator(enterPassField, shortPass)
+export async function getIncorrectEmailOrPassMsg(): Promise<string> {
+    return await defaultPage.getElementsTextByLocator(incorrectEmailOrPassMsg)
 
 }
