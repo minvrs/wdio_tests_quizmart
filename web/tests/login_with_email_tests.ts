@@ -37,7 +37,7 @@ describe('Login with email tests', () => {
 
     })
 
-    it('Incorrect Password validation message', async () => {
+    it('Incorrect Password massage when logging in', async () => {
         await loginPage.signInWithEmail(userCredentials.user.email, incorrectPass)
         browser.pause(2000)
         await loginPage.clickSignInBtn()
