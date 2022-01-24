@@ -4,12 +4,12 @@ import * as userCredentials from '../utils/user_credentials'
 import { expect } from "chai"
 import { ValidationFieldMessages } from '../utils/validation_field_messages'
 
-const incorectPass = 'ecret123'
+const incorrectPass = 'Incorrect'
 const notRegisteredEmail = 'no@email.com'
 const invalidEmails = ['invalidEmail.com', 'invalid@email', '@invalidEmail.com', '!Tº••…¬¬∫√%##%&~“π¬ª¶•.com', 'invalid.@email@invalidEmail.com']
 const shortPass = '1234'
 const longPass = Math.random().toString(16).repeat(10)
-const longEmail = Math.random().toString(16).repeat(18) + '@a.a'
+const longEmail = Math.random().toString(16).repeat(18) + '@mail.mail'
 //--Maybe need to move to other place--//
 const registerPageHeader = 'Register'
 const forgotPassHeader = 'Reset your password'
@@ -27,9 +27,9 @@ describe('Login with email tests', () => {
 
     })
 
-    //--Need test for succesful login--//
+    //--Need test for successful login--//
 
-    it('Inccorect Email validation message', async () => {
+    it('Incorrect Email message when logging in with unregistered email', async () => {
         await loginPage.signInWithEmail(notRegisteredEmail, userCredentials.user.password)
         browser.pause(2000)
         await loginPage.clickSignInBtn()
@@ -37,8 +37,8 @@ describe('Login with email tests', () => {
 
     })
 
-    it('Inccorect Password validation message', async () => {
-        await loginPage.signInWithEmail(userCredentials.user.email, incorectPass)
+    it('Incorrect Password validation message', async () => {
+        await loginPage.signInWithEmail(userCredentials.user.email, incorrectPass)
         browser.pause(2000)
         await loginPage.clickSignInBtn()
         expect(await loginPage.getIncorrectEmailOrPassMsg()).equals(ValidationFieldMessages.incorrectEmailOrPassMsg)
