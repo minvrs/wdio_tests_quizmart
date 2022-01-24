@@ -42,7 +42,7 @@ export async function clickCreateAccountLink(): Promise<void> {
 
 }
 
-export async function clickForgotPassLinl(): Promise<void> {
+export async function clickForgotPassLink(): Promise<void> {
     await defaultPage.clickByLocator(linkForgotPass)
 
 }

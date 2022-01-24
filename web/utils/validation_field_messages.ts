@@ -1,4 +1,4 @@
-export enum validationFieldMessages {
+export enum ValidationFieldMessages {
     incorrectEmailOrPassMsg = 'The email address or password is incorrect',
     RequireMsg = 'Required',
     invalidEmailMsg = 'Must be valid email',
