@@ -1,6 +1,6 @@
 import * as defaultPage from "../pageObjects/default_page"
 import * as landingPage from "../pageObjects/landing_page"
-import * as loginPage from "../pageObjects/login_page"
+import * as loginPage from "../pageObjects/sign_in_with_email_page"
 import { expect } from "chai"
 
 const expectedHeaderText = 'Sign in'

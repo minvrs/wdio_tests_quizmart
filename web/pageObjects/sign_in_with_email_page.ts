@@ -1,4 +1,4 @@
-import * as defaultPage from "../pageObjects/default_page"
+import * as defaultPage from "./default_page"
 
 const pageHeaders = '//main//h1'
 const enterEmailField = '//main//input[@name="email"]'
