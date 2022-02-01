@@ -1,5 +1,6 @@
 import * as defaultPage from "../pageObjects/default_page"
-import * as loginPage from '../pageObjects/login_page'
+import * as loginPage from '../pageObjects/sign_in_with_email_page'
+import * as discoverPage from '../pageObjects/discover_page'
 import * as userCredentials from '../utils/user_credentials'
 import { expect } from "chai"
 import { ValidationFieldMessages } from '../utils/validation_field_messages'
@@ -11,27 +12,29 @@ const shortPass = '1234'
 const longPass = Math.random().toString(16).repeat(10)
 const longEmail = Math.random().toString(16).repeat(18) + '@mail.mail'
 //--Maybe need to move to other place--//
+const discoverPageHeader = 'Discover'
 const registerPageHeader = 'Register'
 const forgotPassHeader = 'Reset your password'
 
 
 describe('Login with email tests', () => {
 
-    before(async function () {
+    beforeEach(async function () {
         await defaultPage.openSigInPageURL()
 
     })
 
-    beforeEach(async function () {
-        await browser.refresh()
+    it('Successful sign in', async () => {
+        await loginPage.signInWithEmail(userCredentials.user.email, userCredentials.user.password)
+        await browser.pause(3000)
+        expect(await discoverPage.getPageHeaderText()).equal(discoverPageHeader)
+        await browser.pause(2000)
+        await browser.back()
 
     })
 
-    //--Need test for successful login--//
-
     it('Incorrect Email message when logging in with unregistered email', async () => {
         await loginPage.signInWithEmail(notRegisteredEmail, userCredentials.user.password)
-        browser.pause(2000)
         await loginPage.clickSignInBtn()
         expect(await loginPage.getIncorrectEmailOrPassMsg()).equals(ValidationFieldMessages.incorrectEmailOrPassMsg)
 
@@ -39,7 +42,6 @@ describe('Login with email tests', () => {
 
     it('Incorrect Password massage when logging in', async () => {
         await loginPage.signInWithEmail(userCredentials.user.email, incorrectPass)
-        browser.pause(2000)
         await loginPage.clickSignInBtn()
         expect(await loginPage.getIncorrectEmailOrPassMsg()).equals(ValidationFieldMessages.incorrectEmailOrPassMsg)
 
