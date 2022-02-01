@@ -28,21 +28,17 @@ describe('Login with email tests', () => {
         await loginPage.signInWithEmail(userCredentials.user.email, userCredentials.user.password)
         await browser.pause(3000)
         expect(await discoverPage.getPageHeaderText()).equal(discoverPageHeader)
-        await browser.pause(2000)
-        await browser.back()
 
     })
 
     it('Incorrect Email message when logging in with unregistered email', async () => {
         await loginPage.signInWithEmail(notRegisteredEmail, userCredentials.user.password)
-        await loginPage.clickSignInBtn()
         expect(await loginPage.getIncorrectEmailOrPassMsg()).equals(ValidationFieldMessages.incorrectEmailOrPassMsg)
 
     })
 
     it('Incorrect Password massage when logging in', async () => {
         await loginPage.signInWithEmail(userCredentials.user.email, incorrectPass)
-        await loginPage.clickSignInBtn()
         expect(await loginPage.getIncorrectEmailOrPassMsg()).equals(ValidationFieldMessages.incorrectEmailOrPassMsg)
 
     })
@@ -83,7 +79,6 @@ describe('Login with email tests', () => {
     it('Open Create Account link', async () => {
         await loginPage.clickCreateAccountLink()
         expect(await loginPage.getPageHeaderText()).equals(registerPageHeader)
-        await browser.back()
 
     })
 
