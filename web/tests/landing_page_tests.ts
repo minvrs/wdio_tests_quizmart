@@ -9,9 +9,9 @@ describe('Landing page test cases', () => {
 
     it.only('Open Sign In with Email page', async () => {
         await defaultPage.openURL()
-        await browser.pause(1000)
-        await landingPage.clickSingInWithEmailBtn()
-        await browser.pause(2000)
+        await landingPage.waitUntilBtnSingInWithEmail()
+        await landingPage.clickBtnSingInWithEmail()
+        await loginPage.waitUntilBtnSignInIsVisible()
         expect(await loginPage.getPageHeaderText()).equals(expectedHeaderText)
 
     })
