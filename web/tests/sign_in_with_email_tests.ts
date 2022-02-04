@@ -26,7 +26,7 @@ describe('Login with email tests', () => {
 
     it('Successful sign in', async () => {
         await loginPage.signInWithEmail(userCredentials.user.email, userCredentials.user.password)
-        await browser.pause(3000)
+        await discoverPage.waitUntilBtnSortQuizesIsVisible()
         expect(await discoverPage.getPageHeaderText()).equal(discoverPageHeader)
 
     })

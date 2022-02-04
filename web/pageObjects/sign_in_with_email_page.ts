@@ -67,3 +67,10 @@ export async function getIncorrectEmailOrPassMsg(): Promise<string> {
     return await defaultPage.getElementsTextByLocator(incorrectEmailOrPassMsg)
 
 }
+
+//----------Waits----------//
+
+export async function waitUntilBtnSignInIsVisible(): Promise<void> {
+    return await defaultPage.waitUntilElementIsVisibleInViewportByLocator(btnSignIn)
+
+}
