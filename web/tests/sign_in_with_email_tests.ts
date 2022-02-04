@@ -4,6 +4,7 @@ import * as discoverPage from '../pageObjects/discover_page'
 import * as userCredentials from '../utils/user_credentials'
 import { expect } from "chai"
 import { ValidationFieldMessages } from '../utils/validation_field_messages'
+import { Headers } from "../utils/enums"
 
 const incorrectPass = 'Incorrect'
 const notRegisteredEmail = 'no@email.com'
@@ -11,10 +12,6 @@ const invalidEmails = ['invalidEmail.com', 'invalid@email', '@invalidEmail.com',
 const shortPass = '1234'
 const longPass = Math.random().toString(16).repeat(10)
 const longEmail = Math.random().toString(16).repeat(18) + '@mail.mail'
-//--Maybe need to move to other place--//
-const discoverPageHeader = 'Discover'
-const registerPageHeader = 'Register'
-const forgotPassHeader = 'Reset your password'
 
 
 describe('Login with email tests', () => {
@@ -26,8 +23,8 @@ describe('Login with email tests', () => {
 
     it('Successful sign in', async () => {
         await loginPage.signInWithEmail(userCredentials.user.email, userCredentials.user.password)
-        await discoverPage.waitUntilBtnSortQuizesIsVisible()
-        expect(await discoverPage.getPageHeaderText()).equal(discoverPageHeader)
+        await discoverPage.waitUntilBtnSortQuizesIsVisible(6000)
+        expect(await discoverPage.getPageHeaderText()).equal(Headers.discoverPageHeader)
 
     })
 
@@ -57,13 +54,9 @@ describe('Login with email tests', () => {
 
     })
 
-    it('Short Password validation message', async () => {
+    it('Short and Long Password validation message', async () => {
         await loginPage.enterPassAndClickEmailField(shortPass)
         expect(await loginPage.getInvalidPassdMsg()).equals(ValidationFieldMessages.shortPassMsg)
-
-    })
-
-    it('Long Password validation message', async () => {
         await loginPage.enterPassAndClickEmailField(longPass)
         expect(await loginPage.getInvalidPassdMsg()).equals(ValidationFieldMessages.longPassMsg)
 
@@ -78,13 +71,13 @@ describe('Login with email tests', () => {
 
     it('Open Create Account link', async () => {
         await loginPage.clickCreateAccountLink()
-        expect(await loginPage.getPageHeaderText()).equals(registerPageHeader)
+        expect(await loginPage.getPageHeaderText()).equals(Headers.registerPageHeader)
 
     })
 
     it('Open Forgot Password link', async () => {
         await loginPage.clickForgotPassLink()
-        expect(await loginPage.getPageHeaderText()).equals(forgotPassHeader)
+        expect(await loginPage.getPageHeaderText()).equals(Headers.forgotPassHeader)
 
     })
 

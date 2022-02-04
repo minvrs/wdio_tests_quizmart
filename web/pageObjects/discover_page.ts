@@ -13,7 +13,7 @@ export async function getPageHeaderText(): Promise<string> {
 
 //----------Waits----------//
 
-export async function waitUntilBtnSortQuizesIsVisible(): Promise<void> {
-    return await defaultPage.waitUntilElementIsVisibleInViewportByLocator(btnSortQuizzes)
-    
+export async function waitUntilBtnSortQuizesIsVisible(customTimeout?: number): Promise<void> {
+    return await defaultPage.waitUntilElementIsVisibleInViewportByLocator(btnSortQuizzes, customTimeout)
+
 }
