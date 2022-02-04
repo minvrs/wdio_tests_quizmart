@@ -71,6 +71,6 @@ export async function getIncorrectEmailOrPassMsg(): Promise<string> {
 //----------Waits----------//
 
 export async function waitUntilBtnSignInIsVisible(): Promise<void> {
-    return await defaultPage.waitUntilElemantIsVisibleInViewportByLocator(btnSignIn)
+    return await defaultPage.waitUntilElementIsVisibleInViewportByLocator(btnSignIn)
 
 }

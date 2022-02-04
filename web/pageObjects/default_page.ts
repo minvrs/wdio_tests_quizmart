@@ -41,7 +41,7 @@ export async function enterTextByLocator(locator: string, text: string): Promise
 
 let defaultTimeuot: number = 10000
 
-export async function waitUntilElemantIsVisibleInViewportByLocator(locator: string, customTimeout?: number): Promise<void> {
+export async function waitUntilElementIsVisibleInViewportByLocator(locator: string, customTimeout?: number): Promise<void> {
     const timeoutMessage = `${locator} element still invisible after ${defaultTimeuot} ms`
     await browser.waitUntil(async function () {
         return (await getElementsByLocator(locator)).isDisplayedInViewport()

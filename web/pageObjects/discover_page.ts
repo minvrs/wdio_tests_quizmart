@@ -14,6 +14,6 @@ export async function getPageHeaderText(): Promise<string> {
 //----------Waits----------//
 
 export async function waitUntilBtnSortQuizesIsVisible(): Promise<void> {
-    return await defaultPage.waitUntilElemantIsVisibleInViewportByLocator(btnSortQuizzes)
+    return await defaultPage.waitUntilElementIsVisibleInViewportByLocator(btnSortQuizzes)
     
 }

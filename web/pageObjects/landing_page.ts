@@ -11,7 +11,7 @@ export async function clickBtnSingInWithEmail(): Promise<void> {
 
 //----------Waits----------//
 
-export async function waitUntilBtnSingInWithEmail(): Promise<void> {
-    return await defaultPage.waitUntilElemantIsVisibleInViewportByLocator(btnSignInWithEmail)
+export async function waitUntilBtnSingInWithEmailIsVisible(): Promise<void> {
+    return await defaultPage.waitUntilElementIsVisibleInViewportByLocator(btnSignInWithEmail)
 
 }
