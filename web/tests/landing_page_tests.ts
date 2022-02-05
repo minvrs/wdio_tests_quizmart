@@ -11,7 +11,7 @@ describe('Landing page test cases', () => {
         await landingPage.waitUntilBtnSingInWithEmailIsVisible()
         await landingPage.clickBtnSingInWithEmail()
         await loginPage.waitUntilBtnSignInIsVisible()
-        expect(await loginPage.getPageHeaderText()).equals(Headers.signIndHeaderText)
+        expect(await loginPage.getPageHeaderText()).equals(Headers.signInHeaderText)
 
     })
 })
