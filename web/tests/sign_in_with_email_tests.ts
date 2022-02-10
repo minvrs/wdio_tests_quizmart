@@ -1,18 +1,10 @@
 import * as defaultPage from "../pageObjects/default_page"
-import * as loginPage from '../pageObjects/sign_in_with_email_page'
+import * as signInPage from '../pageObjects/sign_in_with_email_page'
 import * as discoverPage from '../pageObjects/discover_page'
 import * as userCredentials from '../utils/user_credentials'
 import { expect } from "chai"
 import { ValidationFieldMessages } from '../utils/validation_field_messages'
 import { Headers } from "../utils/enums"
-
-const incorrectPass = 'Incorrect'
-const notRegisteredEmail = 'no@email.com'
-const invalidEmails = ['invalidEmail.com', 'invalid@email', '@invalidEmail.com', '!Tº••…¬¬∫√%##%&~“π¬ª¶•.com', 'invalid.@email@invalidEmail.com']
-const shortPass = '1234'
-const longPass = Math.random().toString(16).repeat(10)
-const longEmail = Math.random().toString(16).repeat(18) + '@mail.mail'
-
 
 describe('Login with email tests', () => {
 
@@ -22,62 +14,62 @@ describe('Login with email tests', () => {
     })
 
     it('Successful sign in', async () => {
-        await loginPage.signInWithEmail(userCredentials.user.email, userCredentials.user.password)
+        await signInPage.signInWithEmail(userCredentials.user.email, userCredentials.user.password)
         await discoverPage.waitUntilBtnSortQuizesIsVisible(6000)
         expect(await discoverPage.getPageHeaderText()).equal(Headers.discoverPageHeader)
 
     })
 
     it('Incorrect Email message when logging in with unregistered email', async () => {
-        await loginPage.signInWithEmail(notRegisteredEmail, userCredentials.user.password)
-        expect(await loginPage.getIncorrectEmailOrPassMsg()).equals(ValidationFieldMessages.incorrectEmailOrPassMsg)
+        await signInPage.signInWithEmail(userCredentials.invalidInputs.notRegisteredEmail, userCredentials.user.password)
+        expect(await signInPage.getIncorrectEmailOrPassMsg()).equals(ValidationFieldMessages.incorrectEmailOrPassMsg)
 
     })
 
     it('Incorrect Password massage when logging in', async () => {
-        await loginPage.signInWithEmail(userCredentials.user.email, incorrectPass)
-        expect(await loginPage.getIncorrectEmailOrPassMsg()).equals(ValidationFieldMessages.incorrectEmailOrPassMsg)
+        await signInPage.signInWithEmail(userCredentials.user.email, userCredentials.invalidInputs.incorrectPass)
+        expect(await signInPage.getIncorrectEmailOrPassMsg()).equals(ValidationFieldMessages.incorrectEmailOrPassMsg)
 
     })
 
-    it('Invalid Emails validation message', async () => {
-        for (const invalidEmail of invalidEmails) {
-            await loginPage.enterEmailAndClickPassField(invalidEmail)
-            expect(await loginPage.getInvalidEmailMsg()).equals(ValidationFieldMessages.invalidEmailMsg)
-            browser.refresh()
+    it('Incorrect Emails validation message', async () => {
+        for (const invalidEmail of userCredentials.invalidInputs.invalidEmails) {
+            await signInPage.enterEmailAndClickPassField(invalidEmail)
+            expect(await signInPage.getInvalidEmailMsg()).equals(ValidationFieldMessages.invalidEmailMsg)
+            await browser.refresh()
         }
     })
 
     it('Long Email validation message', async () => {
-        await loginPage.enterEmailAndClickPassField(longEmail)
-        expect(await loginPage.getInvalidEmailMsg()).equals(ValidationFieldMessages.longEmailMsg)
+        await signInPage.enterEmailAndClickPassField(userCredentials.invalidInputs.longEmail)
+        expect(await signInPage.getInvalidEmailMsg()).equals(ValidationFieldMessages.longEmailMsg)
 
     })
 
     it('Short and Long Password validation message', async () => {
-        await loginPage.enterPassAndClickEmailField(shortPass)
-        expect(await loginPage.getInvalidPassdMsg()).equals(ValidationFieldMessages.shortPassMsg)
-        await loginPage.enterPassAndClickEmailField(longPass)
-        expect(await loginPage.getInvalidPassdMsg()).equals(ValidationFieldMessages.longPassMsg)
+        await signInPage.enterPassAndClickEmailField(userCredentials.invalidInputs.shortPass)
+        expect(await signInPage.getInvalidPassdMsg()).equals(ValidationFieldMessages.shortPassMsg)
+        await signInPage.enterPassAndClickEmailField(userCredentials.invalidInputs.longPass)
+        expect(await signInPage.getInvalidPassdMsg()).equals(ValidationFieldMessages.longPassMsg)
 
     })
 
     it('Email and Password required message', async () => {
-        await loginPage.clickSignInBtn()
-        expect(await loginPage.getInvalidEmailMsg()).equals(ValidationFieldMessages.RequireMsg)
-        expect(await loginPage.getInvalidPassdMsg()).equals(ValidationFieldMessages.RequireMsg)
+        await signInPage.clickSignInBtn()
+        expect(await signInPage.getInvalidEmailMsg()).equals(ValidationFieldMessages.requiredMsg)
+        expect(await signInPage.getInvalidPassdMsg()).equals(ValidationFieldMessages.requiredMsg)
 
     })
 
     it('Open Create Account link', async () => {
-        await loginPage.clickCreateAccountLink()
-        expect(await loginPage.getPageHeaderText()).equals(Headers.registerPageHeader)
+        await signInPage.clickCreateAccountLink()
+        expect(await signInPage.getPageHeaderText()).equals(Headers.registerPageHeader)
 
     })
 
     it('Open Forgot Password link', async () => {
-        await loginPage.clickForgotPassLink()
-        expect(await loginPage.getPageHeaderText()).equals(Headers.forgotPassHeader)
+        await signInPage.clickForgotPassLink()
+        expect(await signInPage.getPageHeaderText()).equals(Headers.forgotPassHeader)
 
     })
 

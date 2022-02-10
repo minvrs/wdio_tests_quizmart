@@ -3,4 +3,5 @@ export enum Headers {
     discoverPageHeader = 'Discover',
     registerPageHeader = 'Register',
     forgotPassHeader = 'Reset your password',
+    privacyPolicyHeader = 'Privacy Policy',
 }
