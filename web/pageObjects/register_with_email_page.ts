@@ -19,7 +19,7 @@ export async function signUpWithEmail(email: string, pass: string, repeatPass: s
     await defaultPage.enterTextByLocator(enterEmailField, email)
     await defaultPage.enterTextByLocator(enterPassField, pass)
     await defaultPage.enterTextByLocator(enterPassRepeatField, repeatPass)
-    await defaultPage.clickByLocator(btnSignUp)
+    await clickSignUpBtn()
 
 }
 

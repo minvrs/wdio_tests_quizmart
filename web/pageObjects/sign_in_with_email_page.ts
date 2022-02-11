@@ -16,7 +16,7 @@ const passValidationMsg = '//main/div/form/div/div[2]/h3'
 export async function signInWithEmail(email: string, pass: string) {
     await defaultPage.enterTextByLocator(enterEmailField, email)
     await defaultPage.enterTextByLocator(enterPassField, pass)
-    await defaultPage.clickByLocator(btnSignIn)
+    await clickSignInBtn()
 
 }
 

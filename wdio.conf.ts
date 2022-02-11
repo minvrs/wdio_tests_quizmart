@@ -21,7 +21,7 @@ export const config: WebdriverIO.Config = {
     // will be called from there.
     //
     specs: [
-        './web/tests/**/register_with_email_tests.ts'
+        './web/tests/**/*.ts'
     ],
     // Patterns to exclude.
     exclude: [
