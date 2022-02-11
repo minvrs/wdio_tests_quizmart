@@ -12,6 +12,12 @@ export async function openSigInPageURL(): Promise<void> {
 
 }
 
+export async function openSignUpPageURL(): Promise<void> {
+    await browser.maximizeWindow()
+    await browser.url('/sign-up')
+
+}
+
 //----------Gets----------//
 
 export async function getElementsByLocator(locator: string) {
