@@ -5,6 +5,7 @@ import * as userCredentials from '../utils/user_credentials'
 import { expect } from "chai"
 import { ValidationFieldMessages } from '../utils/validation_field_messages'
 import { Headers } from "../utils/enums"
+import * as emailAPI from "../utils/email_service_API"
 
 describe('Login with email tests', () => {
 
@@ -13,7 +14,7 @@ describe('Login with email tests', () => {
 
     })
 
-    it('Successful sign in', async () => {
+    it.only('Successful sign in', async () => {
         await signInPage.signInWithEmail(userCredentials.user.email, userCredentials.user.password)
         await discoverPage.waitUntilBtnSortQuizesIsVisible(6000)
         expect(await discoverPage.getPageHeaderText()).equal(Headers.discoverPageHeader)

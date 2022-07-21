@@ -4,6 +4,7 @@ import * as signInPage from "../pageObjects/sign_in_with_email_page"
 import * as registerPage from "../pageObjects/register_with_email_page"
 import { expect } from "chai"
 import { Headers } from "../utils/enums"
+import { takeScreenshot } from "../utils/screenshots"
 
 describe('Landing page test cases', () => {
 
@@ -26,4 +27,9 @@ describe('Landing page test cases', () => {
         await registerPage.waitUntilBtnSignUpIsVisible()
         expect(await registerPage.getPageHeaderText()).equals(Headers.registerPageHeader)
     })
+
+    // afterEach(async function () {
+    //     await takeScreenshot(this)
+    // })
+
 })
